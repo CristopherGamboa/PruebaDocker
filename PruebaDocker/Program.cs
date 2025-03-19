@@ -16,10 +16,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-var httpsPort = Environment.GetEnvironmentVariable("ASPNETCORE_HTTPS_PORTS") ?? "8081";
-app.Urls.Add($"https://*:{httpsPort}");
-
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
