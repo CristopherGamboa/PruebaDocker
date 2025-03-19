@@ -2,7 +2,17 @@
 
 # Esta fase se usa cuando se ejecuta desde VS en modo rápido (valor predeterminado para la configuración de depuración)
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
+
+# Configurar UTF-8 en el contenedor
+ENV DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=false
+ENV LANG es_CL.UTF-8
+ENV LC_ALL es_CL.UTF-8
+
+# Instalar localizaciones para soportar caracteres acentuados
+USER root
+RUN apt-get update && apt-get install -y locales && locale-gen es_CL.UTF-8
 USER $APP_UID
+
 WORKDIR /app
 EXPOSE 8080
 EXPOSE 8081
